@@ -4,3 +4,4 @@
 .env
 bin/
 target/
+.DS_Store
