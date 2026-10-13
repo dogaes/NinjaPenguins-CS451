@@ -1,12 +1,16 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// During development, requests to /api go to the Spring Boot server on port 8080,
-// so the browser sees one origin and the session cookie just works.
 export default defineConfig({
   plugins: [react()],
   server: {
+    host: '0.0.0.0',
     port: 5173,
-    proxy: { '/api': 'http://localhost:8080' },
+    proxy: {
+      '/api': {
+        target: process.env.BACKEND_URL || 'http://localhost:8080',
+        changeOrigin: true,
+      },
+    },
   },
 })
