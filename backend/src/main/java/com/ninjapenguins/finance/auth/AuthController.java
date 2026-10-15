@@ -107,7 +107,14 @@ public class AuthController {
                                   HttpServletRequest request, HttpServletResponse response) {
         Authentication auth = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken.unauthenticated(login, password));
-        request.changeSessionId(); // prevents session fixation
+        
+            if (request.getSession(false) != null) {
+                request.changeSessionId(); // Session exists, change ID (prevents session fixation)
+            } else {
+
+                request.getSession(true); // Create a new session
+            }
+
         SecurityContext context = SecurityContextHolder.createEmptyContext();
         context.setAuthentication(auth);
         SecurityContextHolder.setContext(context);
