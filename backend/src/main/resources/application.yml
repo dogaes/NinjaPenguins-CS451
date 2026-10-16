@@ -13,9 +13,12 @@ spring:
     enabled: true
 
 server:
+  port: ${PORT:8080}                      # Railway tells the app which port to use
+  forward-headers-strategy: framework     # trust Railway's https proxy
   servlet:
     session:
-      timeout: 30m        # sign out after 30 minutes of inactivity (FR-AUTH-006)
+      timeout: 10m                        # sign out after 10 minutes of inactivity (FR-AUTH-006)
       cookie:
         http-only: true
         same-site: strict
+        secure: ${COOKIE_SECURE:false}    # true online (https), false on localhost
