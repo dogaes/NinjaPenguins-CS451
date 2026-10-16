@@ -1,3 +1,10 @@
 body { background: #f4f7fb; }
 .auth-card { max-width: 420px; }
 .brand { color: #17365d; }
+
+/* Dashboard */
+.stat-label { font-size: .875rem; color: #6c757d; }
+.stat-value { font-size: 1.75rem; font-weight: 600; }
+.card-title-sm { font-size: 1rem; font-weight: 600; margin-bottom: 0; }
+.progress { height: .6rem; }
+.navbar .nav-link.active { color: #17365d; font-weight: 600; }
